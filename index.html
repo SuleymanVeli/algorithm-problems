@@ -11,6 +11,10 @@
             --card-bg: #ffffff;
             --text-color: #2d3748;
             --border-color: #e2e8f0;
+            /* 1. Baxılmış kartlar üçün yeni rəng dəyişənləri */
+            --visited-bg: #f0fff4;      /* Zəif yaşıl fon */
+            --visited-border: #48bb78;  /* Yaşıl çərçivə */
+            --visited-text: #2f855a;    /* Tünd yaşıl mətn */
         }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -89,6 +93,20 @@
             background-color: #fff;
             box-shadow: 0 4px 6px rgba(43, 108, 176, 0.1);
         }
+        
+        /* 2. BAXILMIŞ KARTLARIN STİLİ */
+        .problem-card.visited {
+            background-color: var(--visited-bg);
+            border-color: var(--visited-border);
+        }
+        .problem-card.visited .problem-title {
+            color: var(--visited-text);
+        }
+        .problem-card.visited .problem-id {
+            background-color: #c6f6d5;
+            color: var(--visited-text);
+        }
+
         .problem-id {
             background-color: #edf2f7;
             color: #4a5568;
@@ -130,9 +148,6 @@
 </div>
 
 <script>
-    // ==========================================
-    // MƏSƏLƏ MODELİ (Bura rahatlıqla dəyişiklik edə bilərsiniz)
-    // ==========================================
     const problemsModel = [
         // Şəkil 1
         { id: 8805, title: "The sum of two integers is 2", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
@@ -268,14 +283,22 @@
         { id: 9107, title: "Don't Split The Atom!", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" }
     ];
 
-    // ==========================================
-    // RENDER MƏNTİQİ (JavaScript Engine)
-    // ==========================================
+    // Yaddaşdan baxılmış məsələlərin siyahısını götürürük (Massiv olaraq)
+    let visitedProblems = JSON.parse(localStorage.getItem('visitedProblems')) || [];
+
+    // Karta klikləyəndə işə düşən funksiya
+    function markAsVisited(id, element) {
+        if (!visitedProblems.includes(id)) {
+            visitedProblems.push(id);
+            localStorage.setItem('visitedProblems', JSON.stringify(visitedProblems));
+            element.classList.add('visited'); // Kartın rəngini anında dəyişirik
+        }
+    }
+
     function renderApp() {
         const root = document.getElementById('app-root');
-        root.innerHTML = ''; // Əvvəlki kontenti təmizləyirik
+        root.innerHTML = ''; 
 
-        // 1. Məsələləri kateqoriyalar üzrə qruplaşdırırıq
         const groupedProblems = {};
         problemsModel.forEach(prob => {
             if (!groupedProblems[prob.category]) {
@@ -284,18 +307,13 @@
             groupedProblems[prob.category].push(prob);
         });
 
-        // 2. Hər bir kateqoriya üçün HTML elementləri yaradırıq
         Object.keys(groupedProblems).forEach(categoryName => {
             const problems = groupedProblems[categoryName];
-
-            // ID-yə görə sıralama (artan sıra ilə)
             problems.sort((a, b) => a.id - b.id);
 
-            // Bölmə container-i
             const section = document.createElement('div');
             section.className = 'category-section';
 
-            // Başlıq hissəsi
             const titleDiv = document.createElement('div');
             titleDiv.className = 'category-title';
             titleDiv.innerHTML = `
@@ -304,16 +322,21 @@
             `;
             section.appendChild(titleDiv);
 
-            // Məsələlərin şəbəkəsi (Grid)
             const grid = document.createElement('div');
             grid.className = 'problem-grid';
 
-            // Kartların yaradılması
             problems.forEach(prob => {
                 const card = document.createElement('a');
-                card.className = 'problem-card';
+                
+                // 3. Əgər məsələ ID-si yaddaşda varsa, "visited" klassı əlavə edilir
+                const isVisited = visitedProblems.includes(prob.id);
+                card.className = `problem-card ${isVisited ? 'visited' : ''}`;
+                
                 card.href = `https://eolymp.com/az/problems/${prob.id}`;
                 card.target = '_blank';
+                
+                // Klik hadisəsini dinləyirik
+                card.onclick = function() { markAsVisited(prob.id, card); };
 
                 card.innerHTML = `
                     <div class="problem-id">#${prob.id}</div>
@@ -327,7 +350,6 @@
         });
     }
 
-    // Səhifə tam yükləndikdə render funksiyasını çağırırıq
     document.addEventListener('DOMContentLoaded', renderApp);
 </script>
 
