@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="az">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,10 +13,14 @@
             --text-color: #2d3748;
             --border-color: #e2e8f0;
             /* 1. Baxılmış kartlar üçün yeni rəng dəyişənləri */
-            --visited-bg: #f0fff4;      /* Zəif yaşıl fon */
-            --visited-border: #48bb78;  /* Yaşıl çərçivə */
-            --visited-text: #2f855a;    /* Tünd yaşıl mətn */
+            --visited-bg: #f0fff4;
+            /* Zəif yaşıl fon */
+            --visited-border: #48bb78;
+            /* Yaşıl çərçivə */
+            --visited-text: #2f855a;
+            /* Tünd yaşıl mətn */
         }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-color);
@@ -23,10 +28,12 @@
             margin: 0;
             padding: 20px;
         }
+
         .container {
             max-width: 1000px;
             margin: 0 auto;
         }
+
         header {
             text-align: center;
             margin-bottom: 40px;
@@ -36,14 +43,17 @@
             border-radius: 12px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+
         header h1 {
             margin: 0;
             font-size: 28px;
         }
+
         header p {
             margin: 10px 0 0 0;
             opacity: 0.9;
         }
+
         .category-section {
             background-color: var(--card-bg);
             border-radius: 12px;
@@ -52,6 +62,7 @@
             padding: 24px;
             border: 1px solid var(--border-color);
         }
+
         .category-title {
             font-size: 20px;
             color: var(--primary-color);
@@ -63,6 +74,7 @@
             align-items: center;
             justify-content: space-between;
         }
+
         .badge {
             background-color: #ebf8ff;
             color: #2b6cb0;
@@ -71,11 +83,13 @@
             border-radius: 20px;
             font-weight: bold;
         }
+
         .problem-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 15px;
         }
+
         .problem-card {
             display: flex;
             align-items: center;
@@ -87,21 +101,24 @@
             color: var(--text-color);
             transition: all 0.2s ease;
         }
+
         .problem-card:hover {
             transform: translateY(-2px);
             border-color: var(--primary-color);
             background-color: #fff;
             box-shadow: 0 4px 6px rgba(43, 108, 176, 0.1);
         }
-        
+
         /* 2. BAXILMIŞ KARTLARIN STİLİ */
         .problem-card.visited {
             background-color: var(--visited-bg);
             border-color: var(--visited-border);
         }
+
         .problem-card.visited .problem-title {
             color: var(--visited-text);
         }
+
         .problem-card.visited .problem-id {
             background-color: #c6f6d5;
             color: var(--visited-text);
@@ -118,6 +135,7 @@
             min-width: 45px;
             text-align: center;
         }
+
         .problem-title {
             font-size: 15px;
             font-weight: 500;
@@ -126,9 +144,11 @@
             text-overflow: ellipsis;
             color: #2d3748;
         }
+
         .problem-card:hover .problem-title {
             color: var(--primary-color);
         }
+
         @media (max-width: 600px) {
             .problem-grid {
                 grid-template-columns: 1fr;
@@ -136,262 +156,316 @@
         }
     </style>
 </head>
+
 <body>
 
-<div class="container">
-    <header>
-        <h1>Azercell Cup Yarışına Hazırlıq Siyahısı</h1>
-        <p>Məsələlərin kateqoriyalar üzrə qruplaşdırılmış dinamik siyahısı</p>
-    </header>
+    <div class="container">
+        <header>
+            <h1>Azercell Cup Yarışına Hazırlıq Siyahısı</h1>
+            <p>Məsələlərin kateqoriyalar üzrə qruplaşdırılmış dinamik siyahısı</p>
+        </header>
 
-    <main id="app-root"></main>
-</div>
+        <main id="app-root"></main>
+    </div>
 
-<script>
-    const problemsModel = [
-        // Şəkil 1
-        { id: 8805, title: "The sum of two integers is 2", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
-        { id: 8807, title: "Opposite number", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
-        { id: 8808, title: "Difference of integers", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
-        { id: 8812, title: "Perimeter and area", category: "Həndəsə və Digər Tapşırıqlar" },
-        { id: 8813, title: "Surface area and volume", category: "Həndəsə və Digər Tapşırıqlar" },
-        { id: 8814, title: "Perimeter and Area 2", category: "Həndəsə və Digər Tapşırıqlar" },
-        { id: 8815, title: "Surface area and volume 2", category: "Həndəsə her" },
-        { id: 8824, title: "Find the number", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
-        { id: 961,  title: "Four-digit without middle", category: "Dövrlər və Rəqəmlərlə İş" },
+    <script>
+        const problemsModel = [
+            // Şəkil 1
+            { id: 8805, title: "The sum of two integers is 2", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
+            { id: 8807, title: "Opposite number", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
+            { id: 8808, title: "Difference of integers", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
+            { id: 8812, title: "Perimeter and area", category: "Həndəsə və Digər Tapşırıqlar" },
+            { id: 8813, title: "Surface area and volume", category: "Həndəsə və Digər Tapşırıqlar" },
+            { id: 8814, title: "Perimeter and Area 2", category: "Həndəsə və Digər Tapşırıqlar" },
+            { id: 8815, title: "Surface area and volume 2", category: "Həndəsə her" },
+            { id: 8824, title: "Find the number", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
+            { id: 961, title: "Four-digit without middle", category: "Dövrlər və Rəqəmlərlə İş" },
 
-        // Şəkil 2
-        { id: 248,  title: "Young gardener", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 6277, title: "Buy the water", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
-        { id: 519,  title: "Sum of squares", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 2860, title: "Sum of integers on the interval", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8254, title: "Hotel rooms", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
-        { id: 8627, title: "Sum of neighbors", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8767, title: "Candies", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8841, title: "Digit 2", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8842, title: "Number 3", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8843, title: "Delete the digit", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8844, title: "Remove digit 2", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8845, title: "Remove the digit 3", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8846, title: "Exchange of digits", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8847, title: "Exchange of digits 2", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8848, title: "Exchange of numbers 3", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8851, title: "The number in reverse", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8852, title: "Remove numbers", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8853, title: "Remove the digits 2", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8854, title: "The number in reverse is 2", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8855, title: "Find the number 1", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
-        { id: 8856, title: "Find the number 2", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
+            // Şəkil 2
+            { id: 248, title: "Young gardener", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 6277, title: "Buy the water", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
+            { id: 519, title: "Sum of squares", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 2860, title: "Sum of integers on the interval", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8254, title: "Hotel rooms", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
+            { id: 8627, title: "Sum of neighbors", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8767, title: "Candies", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8841, title: "Digit 2", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8842, title: "Number 3", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8843, title: "Delete the digit", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8844, title: "Remove digit 2", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8845, title: "Remove the digit 3", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8846, title: "Exchange of digits", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8847, title: "Exchange of digits 2", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8848, title: "Exchange of numbers 3", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8851, title: "The number in reverse", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8852, title: "Remove numbers", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8853, title: "Remove the digits 2", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8854, title: "The number in reverse is 2", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8855, title: "Find the number 1", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
+            { id: 8856, title: "Find the number 2", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
 
-        // Şəkil 3
-        { id: 8838, title: "Peter and pies", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
-        { id: 8839, title: "Petryk and Pies 2", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
-        { id: 947,  title: "Reverse order", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8638, title: "Append three", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
-        { id: 9422, title: "Left and Right", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
-        { id: 9933, title: "Clock", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
-        { id: 9934, title: "Clock 2", category: "Şərt Operatoru (Conditional)" },
-        { id: 955,  title: "The square of sum", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
-        { id: 8849, title: "Doubling", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
+            // Şəkil 3
+            { id: 8838, title: "Peter and pies", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
+            { id: 8839, title: "Petryk and Pies 2", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
+            { id: 947, title: "Reverse order", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8638, title: "Append three", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
+            { id: 9422, title: "Left and Right", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
+            { id: 9933, title: "Clock", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
+            { id: 9934, title: "Clock 2", category: "Şərt Operatoru (Conditional)" },
+            { id: 955, title: "The square of sum", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
+            { id: 8849, title: "Doubling", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
 
-        // Şəkil 4
-        { id: 8857, title: "Find the number 3", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
-        { id: 8858, title: "Find the number 4", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
-        { id: 8859, title: "Find the number 5", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
-        { id: 8860, title: "Find the sum", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
-        { id: 9539, title: "Task about Vova", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
-        { id: 9935, title: "Clock 3", category: "Şərt Operatoru (Conditional)" },
-        { id: 9895, title: "Arithmetic progressions", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 7336, title: "Pies", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
-        { id: 7451, title: "Point", category: "Həndəsə və Digər Tapşırıqlar" },
-        { id: 1289, title: "Lunch", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
-        { id: 6272, title: "School Olympiad", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
+            // Şəkil 4
+            { id: 8857, title: "Find the number 3", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
+            { id: 8858, title: "Find the number 4", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
+            { id: 8859, title: "Find the number 5", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
+            { id: 8860, title: "Find the sum", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
+            { id: 9539, title: "Task about Vova", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
+            { id: 9935, title: "Clock 3", category: "Şərt Operatoru (Conditional)" },
+            { id: 9895, title: "Arithmetic progressions", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 7336, title: "Pies", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
+            { id: 7451, title: "Point", category: "Həndəsə və Digər Tapşırıqlar" },
+            { id: 1289, title: "Lunch", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
+            { id: 6272, title: "School Olympiad", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
 
-        // Şəkil 5
-        { id: 8371, title: "Even or Odd", category: "Şərt Operatoru (Conditional)" },
-        { id: 8521, title: "Conditional statement - 2", category: "Şərt Operatoru (Conditional)" },
-        { id: 8526, title: "Conditional statement - 3", category: "Şərt Operatoru (Conditional)" },
-        { id: 8613, title: "Conditional statement - 5", category: "Şərt Operatoru (Conditional)" },
-        { id: 8621, title: "Two identical digits", category: "Şərt Operatoru (Conditional)" },
-        { id: 8614, title: "Inside the interval", category: "Şərt Operatoru (Conditional)" },
-        { id: 10275,title: "A+B=C?", category: "Şərt Operatoru (Conditional)" },
-        { id: 8882, title: "Square", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
-        { id: 8615, title: "Outside the interval", category: "Şərt Operatoru (Conditional)" },
-        { id: 8605, title: "Sum of real numbers", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8604, title: "Sum and product of real numbers", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 957,  title: "Square root", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8606, title: "Sum of some real numbers", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8523, title: "Circle", category: "Həndəsə və Digər Tapşırıqlar" },
-        { id: 8825, title: "Value of variable 1", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
-        { id: 8816, title: "The power of a number", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
+            // Şəkil 5
+            { id: 8371, title: "Even or Odd", category: "Şərt Operatoru (Conditional)" },
+            { id: 8521, title: "Conditional statement - 2", category: "Şərt Operatoru (Conditional)" },
+            { id: 8526, title: "Conditional statement - 3", category: "Şərt Operatoru (Conditional)" },
+            { id: 8613, title: "Conditional statement - 5", category: "Şərt Operatoru (Conditional)" },
+            { id: 8621, title: "Two identical digits", category: "Şərt Operatoru (Conditional)" },
+            { id: 8614, title: "Inside the interval", category: "Şərt Operatoru (Conditional)" },
+            { id: 10275, title: "A+B=C?", category: "Şərt Operatoru (Conditional)" },
+            { id: 8882, title: "Square", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
+            { id: 8615, title: "Outside the interval", category: "Şərt Operatoru (Conditional)" },
+            { id: 8605, title: "Sum of real numbers", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8604, title: "Sum and product of real numbers", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 957, title: "Square root", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8606, title: "Sum of some real numbers", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8523, title: "Circle", category: "Həndəsə və Digər Tapşırıqlar" },
+            { id: 8825, title: "Value of variable 1", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
+            { id: 8816, title: "The power of a number", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
 
-        // Şəkil 6
-        { id: 1623, title: "Even and odd numbers", category: "Şərt Operatoru (Conditional)" },
-        { id: 918,  title: "Which quarter?", category: "Şərt Operatoru (Conditional)" },
-        { id: 8871, title: "The largest of three", category: "Şərt Operatoru (Conditional)" },
-        { id: 3867, title: "Lazy Misha", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
-        { id: 8885, title: "Previous odd integer", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8612, title: "Conditional statement - 4", category: "Şərt Operatoru (Conditional)" },
-        { id: 8864, title: "Numbers of the same sign", category: "Şərt Operatoru (Conditional)" },
-        { id: 8626, title: "Two digits in a row", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 9930, title: "Server", category: "Şərt Operatoru (Conditional)" },
-        { id: 8618, title: "Four-digit palindrom", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8619, title: "Five-digit in order", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8628, title: "All digits are even", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8672, title: "Square root", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8629, title: "At least one odd", category: "Dövrlər və Rəqəmlərlə İş" },
+            // Şəkil 6
+            { id: 1623, title: "Even and odd numbers", category: "Şərt Operatoru (Conditional)" },
+            { id: 918, title: "Which quarter?", category: "Şərt Operatoru (Conditional)" },
+            { id: 8871, title: "The largest of three", category: "Şərt Operatoru (Conditional)" },
+            { id: 3867, title: "Lazy Misha", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
+            { id: 8885, title: "Previous odd integer", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8612, title: "Conditional statement - 4", category: "Şərt Operatoru (Conditional)" },
+            { id: 8864, title: "Numbers of the same sign", category: "Şərt Operatoru (Conditional)" },
+            { id: 8626, title: "Two digits in a row", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 9930, title: "Server", category: "Şərt Operatoru (Conditional)" },
+            { id: 8618, title: "Four-digit palindrom", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8619, title: "Five-digit in order", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8628, title: "All digits are even", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8672, title: "Square root", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8629, title: "At least one odd", category: "Dövrlər və Rəqəmlərlə İş" },
 
-        // Şəkil 7
-        { id: 7812, title: "Maximum among four numbers", category: "Şərt Operatoru (Conditional)" },
-        { id: 8873, title: "One-digit number", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8877, title: "Perfect square", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 915,  title: "Rectangular or not?", category: "Şərt Operatoru (Conditional)" },
-        { id: 8876, title: "Integer", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 905,  title: "What type of triangle?", category: "Şərt Operatoru (Conditional)" },
-        { id: 8874, title: "Two-digit number", category: "Dövrlər və Rəqəmlərlə İş" },
+            // Şəkil 7
+            { id: 7812, title: "Maximum among four numbers", category: "Şərt Operatoru (Conditional)" },
+            { id: 8873, title: "One-digit number", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8877, title: "Perfect square", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 915, title: "Rectangular or not?", category: "Şərt Operatoru (Conditional)" },
+            { id: 8876, title: "Integer", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 905, title: "What type of triangle?", category: "Şərt Operatoru (Conditional)" },
+            { id: 8874, title: "Two-digit number", category: "Dövrlər və Rəqəmlərlə İş" },
 
-        // Şəkil 8 & 9
-        { id: 8915, title: "All odd", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8931, title: "All OK", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8932, title: "Marathon 2", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8933, title: "Timer", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8640, title: "Numbers with odd digits", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8937, title: "Strip", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 2097, title: "Three digit numbers", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8916, title: "First evens", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8903, title: "Previous number 2", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 2733, title: "The sum of powers of two", category: "Həndəsə və Digər Tapşırıqlar" },
-        { id: 8918, title: "Complete squares", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8921, title: "Digits of the number", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8925, title: "The product of the odd digits of a number", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8934, title: "Marathon 3", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8935, title: "Odds in the interval", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8936, title: "Evens in the interval", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8902, title: "The smallest of the largest 3", category: "Həndəsə və Digər Tapşırıqlar" },
-        { id: 8172, title: "Polyhedra", category: "Həndəsə və Digər Tapşırıqlar" },
-        { id: 8533, title: "Numbers with different digits", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8681, title: "Product of nonzero digits", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8910, title: "Sum of the sequence", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8911, title: "Number of negatives", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8912, title: "The sum of positive", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8905, title: "Previous Number 4", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8909, title: "Length of the sequence", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8913, title: "Number of odds", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8914, title: "Sum of even numbers", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8920, title: "Non-Multiples of 2 3 5", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 8243, title: "The first digit of the number", category: "Dövrlər və Rəqəmlərlə İş" },
-        { id: 9107, title: "Don't Split The Atom!", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
+            // Şəkil 8 & 9
+            { id: 8915, title: "All odd", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8931, title: "All OK", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8932, title: "Marathon 2", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8933, title: "Timer", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8640, title: "Numbers with odd digits", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8937, title: "Strip", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 2097, title: "Three digit numbers", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8916, title: "First evens", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8903, title: "Previous number 2", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 2733, title: "The sum of powers of two", category: "Həndəsə və Digər Tapşırıqlar" },
+            { id: 8918, title: "Complete squares", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8921, title: "Digits of the number", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8925, title: "The product of the odd digits of a number", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8934, title: "Marathon 3", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8935, title: "Odds in the interval", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8936, title: "Evens in the interval", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8902, title: "The smallest of the largest 3", category: "Həndəsə və Digər Tapşırıqlar" },
+            { id: 8172, title: "Polyhedra", category: "Həndəsə və Digər Tapşırıqlar" },
+            { id: 8533, title: "Numbers with different digits", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8681, title: "Product of nonzero digits", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8910, title: "Sum of the sequence", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8911, title: "Number of negatives", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8912, title: "The sum of positive", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8905, title: "Previous Number 4", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8909, title: "Length of the sequence", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8913, title: "Number of odds", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8914, title: "Sum of even numbers", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8920, title: "Non-Multiples of 2 3 5", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 8243, title: "The first digit of the number", category: "Dövrlər və Rəqəmlərlə İş" },
+            { id: 9107, title: "Don't Split The Atom!", category: "Xətti Alqoritmlər və Sadə Riyaziyyat" },
 
-        // Array 1 (Şəkil 1)
-{ id: 904,  title: "Increase by 2", category: "Massivlər (Arrays)" },
-{ id: 908,  title: "Those that are divisible by 6", category: "Massivlər (Arrays)" },
-{ id: 919,  title: "Number by 3", category: "Massivlər (Arrays)" },
-{ id: 922,  title: "Shift the elements to the right", category: "Massivlər (Arrays)" },
-{ id: 2321, title: "Sorting", category: "Massivlər (Arrays)" },
-{ id: 7337, title: "Discounts", category: "Massivlər (Arrays)" },
-{ id: 7831, title: "Sum without maximum", category: "Massivlər (Arrays)" },
-{ id: 7841, title: "Odd elements", category: "Massivlər (Arrays)" },
-{ id: 7842, title: "Even indexes", category: "Massivlər (Arrays)" },
-{ id: 7843, title: "Bigger than previous", category: "Massivlər (Arrays)" },
-{ id: 7844, title: "Neighbors of the same sign", category: "Massivlər (Arrays)" },
-{ id: 7845, title: "Larger than neighbors", category: "Massivlər (Arrays)" },
-{ id: 8657, title: "Difference of middle", category: "Massivlər (Arrays)" },
-{ id: 8679, title: "Divide by 3", category: "Massivlər (Arrays)" },
-{ id: 8953, title: "Print array", category: "Massivlər (Arrays)" },
-{ id: 8954, title: "Print array 2", category: "Massivlər (Arrays)" },
-{ id: 8955, title: "Print array 3", category: "Massivlər (Arrays)" },
-{ id: 8956, title: "Print array 4", category: "Massivlər (Arrays)" },
+            // Array 1 (Şəkil 1)
+            { id: 904, title: "Increase by 2", category: "Massivlər (Arrays)" },
+            { id: 908, title: "Those that are divisible by 6", category: "Massivlər (Arrays)" },
+            { id: 919, title: "Number by 3", category: "Massivlər (Arrays)" },
+            { id: 922, title: "Shift the elements to the right", category: "Massivlər (Arrays)" },
+            { id: 2321, title: "Sorting", category: "Massivlər (Arrays)" },
+            { id: 7337, title: "Discounts", category: "Massivlər (Arrays)" },
+            { id: 7831, title: "Sum without maximum", category: "Massivlər (Arrays)" },
+            { id: 7841, title: "Odd elements", category: "Massivlər (Arrays)" },
+            { id: 7842, title: "Even indexes", category: "Massivlər (Arrays)" },
+            { id: 7843, title: "Bigger than previous", category: "Massivlər (Arrays)" },
+            { id: 7844, title: "Neighbors of the same sign", category: "Massivlər (Arrays)" },
+            { id: 7845, title: "Larger than neighbors", category: "Massivlər (Arrays)" },
+            { id: 8657, title: "Difference of middle", category: "Massivlər (Arrays)" },
+            { id: 8679, title: "Divide by 3", category: "Massivlər (Arrays)" },
+            { id: 8953, title: "Print array", category: "Massivlər (Arrays)" },
+            { id: 8954, title: "Print array 2", category: "Massivlər (Arrays)" },
+            { id: 8955, title: "Print array 3", category: "Massivlər (Arrays)" },
+            { id: 8956, title: "Print array 4", category: "Massivlər (Arrays)" },
 
-// Array 2 (Şəkil 2)
-{ id: 907,  title: "The first element not greater than 2.5", category: "Massivlər (Arrays)" },
-{ id: 910,  title: "The arithmetic mean of positive", category: "Massivlər (Arrays)" },
-{ id: 914,  title: "Maximum of absolute values", category: "Massivlər (Arrays)" },
-{ id: 917,  title: "Twice the minimum", category: "Massivlər (Arrays)" },
-{ id: 921,  title: "Negative elements", category: "Massivlər (Arrays)" },
-// Qeyd: 922 ID-li məsələ hər iki şəkildə eynidir, təkrar əlavə etməyə ehtiyac yoxdur.
-{ id: 2098, title: "Invertor", category: "Massivlər (Arrays)" },
-{ id: 2616, title: "Lost card", category: "Massivlər (Arrays)" },
-{ id: 7830, title: "The largest element of the array", category: "Massivlər (Arrays)" },
-{ id: 7834, title: "Two biggest", category: "Massivlər (Arrays)" },
-{ id: 7849, title: "Change max and min", category: "Massivlər (Arrays)" },
-{ id: 8680, title: "Even neighbours", category: "Massivlər (Arrays)" },
-{ id: 8774, title: "Elections", category: "Massivlər (Arrays)" },
-{ id: 8958, title: "Output array 6", category: "Massivlər (Arrays)" },
-{ id: 8960, title: "Except for the smallest and the largest", category: "Massivlər (Arrays)" },
-{ id: 8961, title: "First the smallest", category: "Massivlər (Arrays)" },
-{ id: 8962, title: "The last the largest", category: "Massivlər (Arrays)" },
-{ id: 8963, title: "Minimums to the left", category: "Massivlər (Arrays)" }
-    ];
+            // Array 2 (Şəkil 2)
+            { id: 907, title: "The first element not greater than 2.5", category: "Massivlər (Arrays)" },
+            { id: 910, title: "The arithmetic mean of positive", category: "Massivlər (Arrays)" },
+            { id: 914, title: "Maximum of absolute values", category: "Massivlər (Arrays)" },
+            { id: 917, title: "Twice the minimum", category: "Massivlər (Arrays)" },
+            { id: 921, title: "Negative elements", category: "Massivlər (Arrays)" },
+            // Qeyd: 922 ID-li məsələ hər iki şəkildə eynidir, təkrar əlavə etməyə ehtiyac yoxdur.
+            { id: 2098, title: "Invertor", category: "Massivlər (Arrays)" },
+            { id: 2616, title: "Lost card", category: "Massivlər (Arrays)" },
+            { id: 7830, title: "The largest element of the array", category: "Massivlər (Arrays)" },
+            { id: 7834, title: "Two biggest", category: "Massivlər (Arrays)" },
+            { id: 7849, title: "Change max and min", category: "Massivlər (Arrays)" },
+            { id: 8680, title: "Even neighbours", category: "Massivlər (Arrays)" },
+            { id: 8774, title: "Elections", category: "Massivlər (Arrays)" },
+            { id: 8958, title: "Output array 6", category: "Massivlər (Arrays)" },
+            { id: 8960, title: "Except for the smallest and the largest", category: "Massivlər (Arrays)" },
+            { id: 8961, title: "First the smallest", category: "Massivlər (Arrays)" },
+            { id: 8962, title: "The last the largest", category: "Massivlər (Arrays)" },
+            { id: 8963, title: "Minimums to the left", category: "Massivlər (Arrays)" },
 
-    // Yaddaşdan baxılmış məsələlərin siyahısını götürürük (Massiv olaraq)
-    let visitedProblems = JSON.parse(localStorage.getItem('visitedProblems')) || [];
 
-    // Karta klikləyəndə işə düşən funksiya
-    function markAsVisited(id, element) {
-        if (!visitedProblems.includes(id)) {
-            visitedProblems.push(id);
-            localStorage.setItem('visitedProblems', JSON.stringify(visitedProblems));
-            element.classList.add('visited'); // Kartın rəngini anında dəyişirik
-        }
-    }
+            // String 1 (Şəkil 1)
+{ id: 4281, title: "Inattention", category: "Sətirlər (Strings)" },
+{ id: 9912, title: "Copy of the text", category: "Sətirlər (Strings)" },
+{ id: 9913, title: "Google is beautiful!", category: "Sətirlər (Strings)" },
+{ id: 9914, title: "Welcome, Linux!", category: "Sətirlər (Strings)" },
+{ id: 4718, title: "Hello, Harry!", category: "Sətirlər (Strings)" },
+{ id: 8316, title: "Sort the letters", category: "Sətirlər (Strings)" },
+{ id: 8985, title: "Delete a letter", category: "Sətirlər (Strings)" },
+{ id: 8986, title: "Delete a fragment", category: "Sətirlər (Strings)" },
+{ id: 8987, title: "Character replacement", category: "Sətirlər (Strings)" },
+{ id: 8988, title: "Character replacement 2", category: "Sətirlər (Strings)" },
+{ id: 8320, title: "Title String", category: "Sətirlər (Strings)" },
+{ id: 8989, title: "Doubling of a character", category: "Sətirlər (Strings)" },
+{ id: 909, title: "Number of words", category: "Sətirlər (Strings)" },
+{ id: 912, title: "Number of sentences", category: "Sətirlər (Strings)" },
+{ id: 8982, title: "Indexes of letter", category: "Sətirlər (Strings)" },
+{ id: 8983, title: "Number of digits", category: "Sətirlər (Strings)" },
+{ id: 8990, title: "Vowels doubling", category: "Sətirlər (Strings)" },
+{ id: 4146, title: "Binary Search Tree 1", category: "Sətirlər (Strings)" },
 
-    function renderApp() {
-        const root = document.getElementById('app-root');
-        root.innerHTML = ''; 
+// String 2 (Şəkil 2)
+{ id: 8991, title: "Characters doubling", category: "Sətirlər (Strings)" },
+{ id: 8992, title: "Without repetitions 3", category: "Sətirlər (Strings)" },
+{ id: 8998, title: "The youngest symbol", category: "Sətirlər (Strings)" },
+{ id: 8999, title: "Senior symbol", category: "Sətirlər (Strings)" },
+{ id: 3255, title: "Arithmetic", category: "Sətirlər (Strings)" },
+{ id: 266, title: "Comparison", category: "Sətirlər (Strings)" },
+{ id: 7326, title: "Sleeping cars", category: "Sətirlər (Strings)" },
+{ id: 8980, title: "Number of sentences", category: "Sətirlər (Strings)" },
+{ id: 8981, title: "Indexes of spaces", category: "Sətirlər (Strings)" },
+{ id: 8979, title: "Only one letter", category: "Sətirlər (Strings)" },
+{ id: 9915, title: "Copying text", category: "Sətirlər (Strings)" },
+{ id: 8922, title: "Number of digits", category: "Sətirlər (Strings)" },
+{ id: 8569, title: "String length", category: "Sətirlər (Strings)" },
+{ id: 9626, title: "startsWith endsWith", category: "Sətirlər (Strings)" },
 
-        const groupedProblems = {};
-        problemsModel.forEach(prob => {
-            if (!groupedProblems[prob.category]) {
-                groupedProblems[prob.category] = [];
+// String 3 (Şəkil 3)
+{ id: 8570, title: "Length of words", category: "Sətirlər (Strings)" },
+{ id: 8571, title: "Count the letters", category: "Sətirlər (Strings)" },
+{ id: 8610, title: "Previous and next letter", category: "Sətirlər (Strings)" },
+{ id: 8697, title: "Square string", category: "Sətirlər (Strings)" },
+{ id: 8696, title: "Grades", category: "Sətirlər (Strings)" },
+{ id: 8653, title: "Add subtract and multiply", category: "Sətirlər (Strings)" },
+{ id: 9000, title: "Ordering", category: "Sətirlər (Strings)" },
+{ id: 9393, title: "Delete odd digits", category: "Sətirlər (Strings)" },
+{ id: 8996, title: "Without repetition 4", category: "Sətirlər (Strings)" },
+{ id: 9625, title: "toUpperCase", category: "Sətirlər (Strings)" },
+{ id: 9610, title: "Mixed sequence", category: "Sətirlər (Strings)" },
+{ id: 7234, title: "Stepan's Air Conditioner", category: "Sətirlər (Strings)" },
+{ id: 4727, title: "Second appearance", category: "Sətirlər (Strings)" }
+        ];
+
+        // Yaddaşdan baxılmış məsələlərin siyahısını götürürük (Massiv olaraq)
+        let visitedProblems = JSON.parse(localStorage.getItem('visitedProblems')) || [];
+
+        // Karta klikləyəndə işə düşən funksiya
+        function markAsVisited(id, element) {
+            if (!visitedProblems.includes(id)) {
+                visitedProblems.push(id);
+                localStorage.setItem('visitedProblems', JSON.stringify(visitedProblems));
+                element.classList.add('visited'); // Kartın rəngini anında dəyişirik
             }
-            groupedProblems[prob.category].push(prob);
-        });
+        }
 
-        Object.keys(groupedProblems).forEach(categoryName => {
-            const problems = groupedProblems[categoryName];
-            problems.sort((a, b) => a.id - b.id);
+        function renderApp() {
+            const root = document.getElementById('app-root');
+            root.innerHTML = '';
 
-            const section = document.createElement('div');
-            section.className = 'category-section';
+            const groupedProblems = {};
+            problemsModel.forEach(prob => {
+                if (!groupedProblems[prob.category]) {
+                    groupedProblems[prob.category] = [];
+                }
+                groupedProblems[prob.category].push(prob);
+            });
 
-            const titleDiv = document.createElement('div');
-            titleDiv.className = 'category-title';
-            titleDiv.innerHTML = `
+            Object.keys(groupedProblems).forEach(categoryName => {
+                const problems = groupedProblems[categoryName];
+                problems.sort((a, b) => a.id - b.id);
+
+                const section = document.createElement('div');
+                section.className = 'category-section';
+
+                const titleDiv = document.createElement('div');
+                titleDiv.className = 'category-title';
+                titleDiv.innerHTML = `
                 <span>${categoryName}</span>
                 <span class="badge">${problems.length} məsələ</span>
             `;
-            section.appendChild(titleDiv);
+                section.appendChild(titleDiv);
 
-            const grid = document.createElement('div');
-            grid.className = 'problem-grid';
+                const grid = document.createElement('div');
+                grid.className = 'problem-grid';
 
-            problems.forEach(prob => {
-                const card = document.createElement('a');
-                
-                // 3. Əgər məsələ ID-si yaddaşda varsa, "visited" klassı əlavə edilir
-                const isVisited = visitedProblems.includes(prob.id);
-                card.className = `problem-card ${isVisited ? 'visited' : ''}`;
-                
-                card.href = `https://eolymp.com/az/problems/${prob.id}`;
-                card.target = '_blank';
-                
-                // Klik hadisəsini dinləyirik
-                card.onclick = function() { markAsVisited(prob.id, card); };
+                problems.forEach(prob => {
+                    const card = document.createElement('a');
 
-                card.innerHTML = `
+                    // 3. Əgər məsələ ID-si yaddaşda varsa, "visited" klassı əlavə edilir
+                    const isVisited = visitedProblems.includes(prob.id);
+                    card.className = `problem-card ${isVisited ? 'visited' : ''}`;
+
+                    card.href = `https://eolymp.com/az/problems/${prob.id}`;
+                    card.target = '_blank';
+
+                    // Klik hadisəsini dinləyirik
+                    card.onclick = function () { markAsVisited(prob.id, card); };
+
+                    card.innerHTML = `
                     <div class="problem-id">#${prob.id}</div>
                     <div class="problem-title" title="${prob.title}">${prob.title}</div>
                 `;
-                grid.appendChild(card);
+                    grid.appendChild(card);
+                });
+
+                section.appendChild(grid);
+                root.appendChild(section);
             });
+        }
 
-            section.appendChild(grid);
-            root.appendChild(section);
-        });
-    }
-
-    document.addEventListener('DOMContentLoaded', renderApp);
-</script>
+        document.addEventListener('DOMContentLoaded', renderApp);
+    </script>
 
 </body>
+
 </html>
